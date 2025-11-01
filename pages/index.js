@@ -1,5 +1,5 @@
 function Home () {
-    return <h1>frase certa</h1>
-}7
-
+  return <h1>frase certa</h1>
+}
+  
 export default Home;
