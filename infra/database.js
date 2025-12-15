@@ -13,11 +13,9 @@ async function query(queryObject) {
   } finally {
     await client.end();
   }
-
-  
 }
 
-async function getNewClient(){
+async function getNewClient() {
   const client = new Client({
     host: process.env.POSTGRES_HOST,
     port: process.env.POSTGRES_POST,
@@ -33,13 +31,13 @@ async function getNewClient(){
 
 export default {
   query,
-  getNewClient
+  getNewClient,
 };
 
-function getSSLValues(){
-  if(process.env.POSTEGRES_CA){
+function getSSLValues() {
+  if (process.env.POSTEGRES_CA) {
     return process.env.POSTGRES_CA;
   }
 
-  return process.env.NODE_ENV === "production" ? true: false;
+  return process.env.NODE_ENV === "production" ? true : false;
 }
