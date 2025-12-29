@@ -26,7 +26,6 @@ function DataBaseStatus() {
   if (!isLoading && data) {
     databaseStatusInformation = (
       <>
-        <h2>Database</h2>
         <div>
           Versão do banco de dados: {data.dependencies.database.version}
         </div>
@@ -41,7 +40,12 @@ function DataBaseStatus() {
     );
   }
 
-  return databaseStatusInformation;
+  return (
+    <>
+      <h2>Database</h2>
+      <div>{databaseStatusInformation}</div>
+    </>
+  );
 }
 
 function UpdatedAt() {
