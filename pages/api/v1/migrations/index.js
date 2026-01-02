@@ -26,10 +26,9 @@ async function getHandler(req, res) {
 
     const pendingMigrations = await migrationsRunner({
       ...defaultMigrationOptions,
-      dbClient
+      dbClient,
     });
     return res.status(200).json(pendingMigrations);
-
   } finally {
     await dbClient.end();
   }
