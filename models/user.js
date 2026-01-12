@@ -23,8 +23,38 @@ async function findOneByUsername(username) {
 
     if (result.rowCount === 0) {
       throw new NotFoundError({
-        message: "Ousername infornado não foi encontrado no sistema.",
+        message: "O username infornado não foi encontrado no sistema.",
         action: "Verifique se o username está digitado corretamente.",
+      });
+    }
+
+    return result.rows[0];
+  }
+}
+
+async function findOneByEmail(email) {
+  const userFound = await runSelectQuery(email);
+
+  return userFound;
+
+  async function runSelectQuery(email) {
+    const result = await database.query({
+      text: `
+        SELECT
+         * 
+        FROM
+          users
+        WHERE
+          LOWER(email) = LOWER($1)
+        LIMIT 1
+        ;`,
+      values: [email],
+    });
+
+    if (result.rowCount === 0) {
+      throw new NotFoundError({
+        message: "O email infornado não foi encontrado no sistema.",
+        action: "Verifique se o email está digitado corretamente.",
       });
     }
 
@@ -165,6 +195,7 @@ const user = {
   create,
   findOneByUsername,
   update,
+  findOneByEmail,
 };
 
 export default user;
