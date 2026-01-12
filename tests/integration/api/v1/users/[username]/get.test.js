@@ -74,7 +74,7 @@ describe("GET to /api/v1/users/[username]", () => {
 
       expect(responseBody).toEqual({
         name: "NotFoundError",
-        message: "Ousername infornado não foi encontrado no sistema.",
+        message: "O username infornado não foi encontrado no sistema.",
         action: "Verifique se o username está digitado corretamente.",
         status_code: 404,
       });
